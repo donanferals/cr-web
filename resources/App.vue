@@ -1,12 +1,12 @@
 <template>
-    <h1 class="text-2xl font-bold underline">
-    Hello world!
-  </h1>
+  <router-view> </router-view>
 </template>
 <script>
 export default {
-  setup() {
-
-   }
+  data() {
+    return {
+      count: 0
+    }
+  },
 }
 </script>
