@@ -1,5 +1,6 @@
 <template>
   <div class="bg-white">
+    <Loading :is-loading="loading"></Loading>
     <h2 class="text-4xl font-italic text-italic tracking-tight text-gray-900">BUSCAR PRODUTOS</h2>
     <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700">
     <div class="pb-12">
@@ -22,7 +23,7 @@
       <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
         <div v-for="produto in produtos" :key="produto.id" class="group relative">
           <div class="min-h-100 aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-100">
-            <img :src="produto.img_cover" :alt="produto.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+            <v-lazy-image :src="produto.img_cover" :alt="produto.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
           </div>
           <div class="mt-4 flex justify-between">
             <div>
@@ -40,7 +41,13 @@
       </div>
     </div>
 
-    <Paginacao />
+    <Paginacao
+      :page="paginacao.page"
+      :current-page="paginacao.currentPage"
+      :total-pages="paginacao.totalPages"
+      @update:currentPage="newValue => { paginacao.currentPage = newValue; carregarProdutos()}" 
+      @update:page="newValue => paginacao.page = newValue" 
+    />
 
     <TransitionRoot as="template" :show="open">
       <Dialog as="div" class="relative z-10" @close="open = false">
@@ -60,7 +67,7 @@
 
                   <div class="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
                     <div class="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                      <img :src="produto.img_cover" :alt="produto.name" class="object-cover object-center" />
+                      <v-lazy-image :src="produto.img_cover" :alt="produto.name" class="object-cover object-center" />
                     </div>
                     <div class="sm:col-span-8 lg:col-span-7">
                       <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">{{ produto.name }}</h2>
@@ -139,11 +146,18 @@
   import { XMarkIcon } from '@heroicons/vue/24/outline'
   import { carrinhoStore } from '../stores/carrinho'
   import Paginacao from './Paginacao.vue'
+  import Loading from './Loading.vue'
+  import VLazyImage from 'v-lazy-image'
 
   const loading = ref(false)
-  const query = ref('Milton Nascimento')
-  const perPage = ref(36)
-  const page = ref(1)
+  const query = ref('Minas')
+  const paginacao = ref({
+    perPage: 36,
+    page: 1,
+    currentPage: 1,
+    totalPages: 1,
+    totalHits: 0 
+  })
   const tipo = ref({ id: 0, tipo: 'TIPO'})
   const produtos = ref([])
   const produto = ref(null)
@@ -180,17 +194,26 @@
 
   const carregarProdutos = async () => {
     loading.value = true;
+    
     try {
-      let response = await fetch(`http://localhost:8000/api/produtos?query=${query.value}&page=${page.value}&per_page=${perPage.value}&tipo=${tipo.value.id}`);
+      let response = await fetch(`http://localhost:8000/api/produtos?query=${query.value}&page=${paginacao.value.currentPage}&per_page=${paginacao.value.perPage}&tipo=${tipo.value.id}`);
+      
       if (!response.ok) {
           throw Error('Erro ao recuperar os produtos');
       }
       const data = await response.json();
-      produtos.value = data.products.hits;
       
+      let { products } = data;
+      
+      produtos.value = products.hits;
+      paginacao.value.currentPage = products.current_page;
+      paginacao.value.perPage = products.per_page;
+      paginacao.value.totalHits = products.totalHits;
+      paginacao.value.totalPages = products.total_pages;  
+      loading.value = false;
+
     } catch(e) {
       console.log("Erro ao carregar os dados");
-    } finally {
       loading.value = false;
     }
   }

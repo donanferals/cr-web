@@ -22,6 +22,7 @@
         "@headlessui/vue": "^1.7.12",
         "@heroicons/vue": "^2.0.16",
         "pinia": "^2.0.33",
+        "v-lazy-image": "^2.1.1",
         "vue-axios": "^3.5.2",
         "vue-loader": "^17.0.1",
         "vue-router": "^4.1.6"
