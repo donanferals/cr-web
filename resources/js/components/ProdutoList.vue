@@ -208,7 +208,7 @@
   const adicionarProduto = () => {
     open.value = false;
     let item = Object.assign(produto.value, {tamanho: tamanhoSelecionado.value, cor: colorSelecionada.value})
-    carrinho.addProduto(item);
+    carrinho.adicionar(item);
   }
 
   onMounted(async () => {

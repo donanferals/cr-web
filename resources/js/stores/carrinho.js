@@ -9,25 +9,34 @@ export const carrinhoStore = defineStore("carrinho", () => {
     const countProdutos = computed(() => produtos.value.length);
     const getTotal = computed(() => total.value);
 
-    function addProduto(produto) {
+    const adicionar = (produto) => {
         produtos.value.push(produto);
         total.value += parseFloat(produto.price);
-    }
+    };
 
-    function abrirCarrinho() {
+    const remover = (produto) => {
+        produtos.value = produtos.value.filter(
+            (item) => item.id !== produto.id
+        );
+        total.value -= parseFloat(produto.price);
+    };
+
+    const abrir = () => {
         carrinhoAberto.value = true;
-    }
+    };
 
-    function fecharCarrinho() {
+    const fechar = () => {
         carrinhoAberto.value = false;
-    }
+    };
+
     return {
         countProdutos,
         getTotal,
         carrinhoAberto,
         produtos,
-        addProduto,
-        abrirCarrinho,
-        fecharCarrinho,
+        adicionar,
+        remover,
+        abrir,
+        fechar,
     };
 });
