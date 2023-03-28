@@ -1,5 +1,5 @@
 <template>
-    <div>Carrinho</div>
+    <h2 class="text-4xl font-bold tracking-tight text-gray-900">Carrinho</h2>
 </template>
 
 <script>
