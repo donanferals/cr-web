@@ -16,156 +16,112 @@
             {{ tipo.tipo }}
           </option>
         </select>
+      </div>
     </div>
-  </div>
-    
-  <div class="mx-auto max-w-2xl py-8 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
-      <div v-for="produto in produtos" :key="produto.id" class="group relative">
-        <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-          <img :src="produto.img_cover" :alt="produto.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
-        </div>
-        <div class="mt-4 flex justify-between">
-          <div>
-            <h3 class="text-sm text-gray-700">
-              <a :href="produto.href" @click="abrirDetalheProduto(produto)">
-                <span aria-hidden="true" class="absolute inset-0" />
-                {{ produto.name }}
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">{{ produto.color }}</p>
-            <p class="mt-1 text-sm font-medium text-gray-900">R$ {{ produto.price }}</p>
+    <div class="mx-auto max-w-2xl py-8 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
+        <div v-for="produto in produtos" :key="produto.id" class="group relative">
+          <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+            <img :src="produto.img_cover" :alt="produto.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+                <a :href="produto.href" @click="abrirDetalheProduto(produto)">
+                  <span aria-hidden="true" class="absolute inset-0" />
+                  {{ produto.name }}
+                </a>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">{{ produto.color }}</p>
+              <p class="mt-1 text-sm font-medium text-gray-900">R$ {{ produto.price }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-    
-  <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-  <div class="flex flex-1 justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
-  </div>
-  <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-    <div>
-      <p class="text-sm text-gray-700">
-        Showing
-        <span class="font-medium">1</span>
-        to
-        <span class="font-medium">10</span>
-        of
-        <span class="font-medium">97</span>
-        results
-      </p>
-    </div>
-    <div>
-      <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-          <span class="sr-only">Previous</span>
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-        <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
-        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-        <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
-        <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
-        <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>
-        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
-        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
-        <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-          <span class="sr-only">Next</span>
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
-</div>
 
-  <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-10" @close="open = false">
-      <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-        <div class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block" />
-      </TransitionChild>
+    <Paginacao />
 
-      <div class="fixed inset-0 z-10 overflow-y-auto">
-        <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
-          <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0 translate-y-4 md:translate-y-0 md:scale-95" enter-to="opacity-100 translate-y-0 md:scale-100" leave="ease-in duration-200" leave-from="opacity-100 translate-y-0 md:scale-100" leave-to="opacity-0 translate-y-4 md:translate-y-0 md:scale-95">
-            <DialogPanel class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
-              <div class="relative flex w-full items-center overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                <button type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8" @click="open = false">
-                  <span class="sr-only">Fechar</span>
-                  <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-                </button>
+    <TransitionRoot as="template" :show="open">
+      <Dialog as="div" class="relative z-10" @close="open = false">
+        <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+          <div class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block" />
+        </TransitionChild>
 
-                <div class="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
-                  <div class="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                    <img :src="produto.img_cover" :alt="produto.name" class="object-cover object-center" />
-                  </div>
-                  <div class="sm:col-span-8 lg:col-span-7">
-                    <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">{{ produto.name }}</h2>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+            <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0 translate-y-4 md:translate-y-0 md:scale-95" enter-to="opacity-100 translate-y-0 md:scale-100" leave="ease-in duration-200" leave-from="opacity-100 translate-y-0 md:scale-100" leave-to="opacity-0 translate-y-4 md:translate-y-0 md:scale-95">
+              <DialogPanel class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+                <div class="relative flex w-full items-center overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+                  <button type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8" @click="open = false">
+                    <span class="sr-only">Fechar</span>
+                    <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+                  </button>
 
-                    <section aria-labelledby="information-heading" class="mt-2">
-                      <h3 id="information-heading" class="sr-only">Detalhes do produto</h3>
-                      <p class="text-2xl text-gray-900">R$ {{ produto.price }}</p>
-                    </section>
+                  <div class="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
+                    <div class="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+                      <img :src="produto.img_cover" :alt="produto.name" class="object-cover object-center" />
+                    </div>
+                    <div class="sm:col-span-8 lg:col-span-7">
+                      <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">{{ produto.name }}</h2>
 
-                    <section aria-labelledby="options-heading" class="mt-10">
-                      <h3 id="options-heading" class="sr-only">Opções</h3>
+                      <section aria-labelledby="information-heading" class="mt-2">
+                        <h3 id="information-heading" class="sr-only">Detalhes do produto</h3>
+                        <p class="text-2xl text-gray-900">R$ {{ produto.price }}</p>
+                      </section>
 
-                        <!-- Cor -->
-                        <div>
-                          <h4 class="text-sm font-medium text-gray-900">Cor: {{ colorSelecionada.product_color_name }}</h4>
-                          <RadioGroup v-model="colorSelecionada" class="mt-4">
-                            <RadioGroupLabel class="sr-only"> Escolha uma cor </RadioGroupLabel>
-                            <span class="flex items-center space-x-3">
-                              <RadioGroupOption as="template" v-for="color in produto.fabrics" :key="color.product_color_name" :value="color" v-slot="{ active, checked }">
-                                <div :class="['ring-black', active && checked ? 'ring-1' : '', !active && checked ? 'ring-1' : '', 'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none']">
-                                  <RadioGroupLabel as="span" class="sr-only"> {{ color.name }} </RadioGroupLabel>
-                                  <span aria-hidden="true" :style="recuperarCorFundo(color.hexa)" class="h-8 w-8 rounded-full border border-black border-opacity-10" />
-                                </div>
-                              </RadioGroupOption>
-                            </span>
-                          </RadioGroup>
-                        </div>
+                      <section aria-labelledby="options-heading" class="mt-10">
+                        <h3 id="options-heading" class="sr-only">Opções</h3>
 
-                        <!-- Tamanho -->
-                        <div class="mt-10">
-                          <div class="flex items-center justify-between">
-                            <h4 class="text-sm font-medium text-gray-900">Tamanho</h4>
+                          <!-- Cor -->
+                          <div>
+                            <h4 class="text-sm font-medium text-gray-900">Cor: {{ colorSelecionada.product_color_name }}</h4>
+                            <RadioGroup v-model="colorSelecionada" class="mt-4">
+                              <RadioGroupLabel class="sr-only"> Escolha uma cor </RadioGroupLabel>
+                              <span class="flex items-center space-x-3">
+                                <RadioGroupOption as="template" v-for="color in produto.fabrics" :key="color.product_color_name" :value="color" v-slot="{ active, checked }">
+                                  <div :class="['ring-black', active && checked ? 'ring-1' : '', !active && checked ? 'ring-1' : '', 'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none']">
+                                    <RadioGroupLabel as="span" class="sr-only"> {{ color.name }} </RadioGroupLabel>
+                                    <span aria-hidden="true" :style="recuperarCorFundo(color.hexa)" class="h-8 w-8 rounded-full border border-black border-opacity-10" />
+                                  </div>
+                                </RadioGroupOption>
+                              </span>
+                            </RadioGroup>
                           </div>
-                          <RadioGroup v-model="tamanhoSelecionado" class="mt-4">
-                            <RadioGroupLabel class="sr-only"> Selecione o tamanho </RadioGroupLabel>
-                            <div class="grid grid-cols-4 gap-4">
-                              <RadioGroupOption as="template" v-for="tamanho in tamanhoProdutos" :key="tamanho.nome" :value="tamanho" :disabled="!tamanho.disponivel" v-slot="{ active, checked }">
-                                <div :class="[tamanho.disponivel ? 'cursor-pointer bg-white text-gray-900 shadow-sm' : 'cursor-not-allowed bg-gray-50 text-gray-200', active ? 'ring-1 ring-black' : '', 'group relative flex items-center justify-center border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1']">
-                                  <RadioGroupLabel as="span">{{ tamanho.nome }}</RadioGroupLabel>
-                                  <span v-if="tamanho.disponivel" :class="[active ? 'border' : 'border-1', checked ? 'ring-1 ring-black' : 'border-transparent', 'pointer-events-none absolute -inset-px']" aria-hidden="true" />
-                                  <span v-else aria-hidden="true" class="pointer-events-none absolute -inset-px border-1 border-gray-200">
-                                    <svg class="absolute inset-0 h-full w-full stroke-2 text-gray-200" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
-                                      <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
-                                    </svg>
-                                  </span>
-                                </div>
-                              </RadioGroupOption>
+
+                          <!-- Tamanho -->
+                          <div class="mt-10">
+                            <div class="flex items-center justify-between">
+                              <h4 class="text-sm font-medium text-gray-900">Tamanho</h4>
                             </div>
-                          </RadioGroup>
-                        </div>
-                        <button @click="adicionarProduto()" class="mt-6 flex w-full items-center justify-center border border-transparent bg-black py-3 px-8 text-base font-medium text-white hover:bg-black focus:outline-none focus:ring-indigo-500 focus:ring-offset-2" @onclick="adicionarCarinho()">COMPRAR</button>
-                    </section>
+                            <RadioGroup v-model="tamanhoSelecionado" class="mt-4">
+                              <RadioGroupLabel class="sr-only"> Selecione o tamanho </RadioGroupLabel>
+                              <div class="grid grid-cols-4 gap-4">
+                                <RadioGroupOption as="template" v-for="tamanho in tamanhoProdutos" :key="tamanho.nome" :value="tamanho" :disabled="!tamanho.disponivel" v-slot="{ active, checked }">
+                                  <div :class="[tamanho.disponivel ? 'cursor-pointer bg-white text-gray-900 shadow-sm' : 'cursor-not-allowed bg-gray-50 text-gray-200', active ? 'ring-1 ring-black' : '', 'group relative flex items-center justify-center border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1']">
+                                    <RadioGroupLabel as="span">{{ tamanho.nome }}</RadioGroupLabel>
+                                    <span v-if="tamanho.disponivel" :class="[active ? 'border' : 'border-1', checked ? 'ring-1 ring-black' : 'border-transparent', 'pointer-events-none absolute -inset-px']" aria-hidden="true" />
+                                    <span v-else aria-hidden="true" class="pointer-events-none absolute -inset-px border-1 border-gray-200">
+                                      <svg class="absolute inset-0 h-full w-full stroke-2 text-gray-200" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
+                                        <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
+                                      </svg>
+                                    </span>
+                                  </div>
+                                </RadioGroupOption>
+                              </div>
+                            </RadioGroup>
+                          </div>
+                          <button @click="adicionarProduto()" class="mt-6 flex w-full items-center justify-center border border-transparent bg-black py-3 px-8 text-base font-medium text-white hover:bg-black focus:outline-none focus:ring-indigo-500 focus:ring-offset-2" @onclick="adicionarCarinho()">COMPRAR</button>
+                      </section>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </DialogPanel>
-          </TransitionChild>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
         </div>
-      </div>
-    </Dialog>
-  </TransitionRoot>
-
+      </Dialog>
+    </TransitionRoot>
   </div>
 </template>
 
@@ -181,6 +137,8 @@
     TransitionRoot,
   } from '@headlessui/vue'
   import { XMarkIcon } from '@heroicons/vue/24/outline'
+  import { carrinhoStore } from '../stores/carrinho'
+  import Paginacao from './Paginacao.vue'
 
   const loading = ref(false)
   const query = ref('Milton Nascimento')
@@ -188,11 +146,12 @@
   const page = ref(1)
   const tipo = ref({ id: 0, tipo: 'TIPO'})
   const produtos = ref([])
-  const produto = ref({})
+  const produto = ref(null)
   const open = ref(false)
   const colorSelecionada = ref({})
   const tamanhoSelecionado = ref({})
-
+  const carrinho = carrinhoStore()
+  
   //#FIXME: integrar com api
   const tamanhoProdutos = ref([
     { nome: 'PP', disponivel: true },
@@ -205,6 +164,7 @@
     { nome: '4GG', disponivel: false },
   ])
 
+  //CANECA, POSTER CAPAS, SKETCHBOOK, MEIA, BANDEIRA DECORATIVA, MANGA LONGA
   const tiposProdutos = ref([
     { id: 0, tipo: 'TIPO'},
     { id: 1, tipo: 'CAMISETA'},
@@ -217,8 +177,6 @@
     { id: 34, tipo: 'BERMUDA DE MOLETOM'},
     { id: 4, tipo: 'REGATA'}
   ])
-
-  //CANECA, POSTER CAPAS, SKETCHBOOK, MEIA, BANDEIRA DECORATIVA, MANGA LONGA
 
   const carregarProdutos = async () => {
     loading.value = true;
@@ -248,8 +206,9 @@
     return `background-color: ${color}`;
   }
   const adicionarProduto = () => {
-    console.log(produto);
     open.value = false;
+    let item = Object.assign(produto.value, {tamanho: tamanhoSelecionado.value, cor: colorSelecionada.value})
+    carrinho.addProduto(item);
   }
 
   onMounted(async () => {
