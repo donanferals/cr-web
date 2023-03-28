@@ -45,8 +45,8 @@
       :page="paginacao.page"
       :current-page="paginacao.currentPage"
       :total-pages="paginacao.totalPages"
-      @update:currentPage="newValue => { paginacao.currentPage = newValue; carregarProdutos()}" 
-      @update:page="newValue => paginacao.page = newValue" 
+      @update:currentPage="newValue => { paginacao.currentPage = newValue; carregarProdutos()}"
+      @update:page="newValue => paginacao.page = newValue"
     />
 
     <TransitionRoot as="template" :show="open">
@@ -156,7 +156,7 @@
     page: 1,
     currentPage: 1,
     totalPages: 1,
-    totalHits: 0 
+    totalHits: 0
   })
   const tipo = ref({ id: 0, tipo: 'TIPO'})
   const produtos = ref([])
@@ -165,7 +165,7 @@
   const colorSelecionada = ref({})
   const tamanhoSelecionado = ref({})
   const carrinho = carrinhoStore()
-  
+
   //#FIXME: integrar com api
   const tamanhoProdutos = ref([
     { nome: 'PP', disponivel: true },
@@ -194,22 +194,22 @@
 
   const carregarProdutos = async () => {
     loading.value = true;
-    
+
     try {
       let response = await fetch(`http://localhost:8000/api/produtos?query=${query.value}&page=${paginacao.value.currentPage}&per_page=${paginacao.value.perPage}&tipo=${tipo.value.id}`);
-      
+
       if (!response.ok) {
           throw Error('Erro ao recuperar os produtos');
       }
       const data = await response.json();
-      
+
       let { products } = data;
-      
+
       produtos.value = products.hits;
       paginacao.value.currentPage = products.current_page;
       paginacao.value.perPage = products.per_page;
       paginacao.value.totalHits = products.totalHits;
-      paginacao.value.totalPages = products.total_pages;  
+      paginacao.value.totalPages = products.total_pages;
       loading.value = false;
 
     } catch(e) {
@@ -223,7 +223,7 @@
     colorSelecionada.value = {}
     tamanhoSelecionado.value = {}
     produto.value = $produto;
-    
+
   }
   const recuperarCorFundo = (color) => {
     return `background-color: ${color}`;
