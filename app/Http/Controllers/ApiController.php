@@ -13,14 +13,13 @@ class ApiController extends Controller
     public function getProdutos(Request $request) {
 
         $parametros = array(
-            'query' => $request['query'],
+            'query' => $request['query'] ?? "''",
             'per_page' => $request['per_page'] ?? 36,
             'page' => $request['page'] ?? 1,
             'tipo' => $request['tipo'] ?? 0,
             'json' => 1,
             'defaultGroup' => 1
         );
-
         //Tratar os tipos de produto
         //Se for CAMISETA (1) ou CAMISA (45) ou MOLETON (5) -> os filtros MODELAGEM, TAMANHO, COR e TEMA devem ser considerados
         
