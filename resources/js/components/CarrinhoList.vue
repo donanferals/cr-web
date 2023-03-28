@@ -1,10 +1,41 @@
 <template>
       <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" v-if="carrinho.carrinhoAberto">
+      <!--
+        Background backdrop, show/hide based on slide-over state.
+
+        Entering: "ease-in-out duration-500"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in-out duration-500"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <!--
+              Slide-over panel, show/hide based on slide-over state.
+
+              Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                From: "translate-x-full"
+                To: "translate-x-0"
+              Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                From: "translate-x-0"
+                To: "translate-x-full"
+            -->
             <div class="pointer-events-auto w-screen max-w-md">
+              <!--
+                Close button, show/hide based on slide-over state.
+
+                Entering: "ease-in-out duration-500"
+                  From: "opacity-0"
+                  To: "opacity-100"
+                Leaving: "ease-in-out duration-500"
+                  From: "opacity-100"
+                  To: "opacity-0"
+              -->
               <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                 <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                   <div class="flex items-start justify-between">
@@ -19,7 +50,7 @@
                     </div>
                   </div>
 
-                  <div class="mt-8" v-if="carrinho.produtos">
+                  <div class="mt-8" v-if="carrinho.countProdutos">
                     <div class="flow-root">
                       <ul role="list" class="-my-6 divide-y divide-gray-200">
                         <li class="flex py-6" v-for="produto in carrinho.produtos">
@@ -47,9 +78,14 @@
                       </ul>
                     </div>
                   </div>
+                  <div v-else>
+                    <div class="mt-8">
+                      <span class="text-base font-medium">Sua sacola está vazia.</span>
+                      <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700">
+                    </div>
+                  </div>
                 </div>
-
-                <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+                <div class="border-t border-gray-200 py-6 px-4 sm:px-6" v-if="carrinho.countProdutos">
                   <div class="flex justify-between text-base font-medium text-gray-900">
                     <p>TOTAL</p>
                     <p>R$ {{ carrinho.getTotal }}</p>
@@ -57,7 +93,6 @@
                   <div class="mt-6">
                     <a href="#" class="flex items-center justify-center border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-700">FINALIZAR COMPRA</a>
                   </div>
-                
                 </div>
               </div>
             </div>

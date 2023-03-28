@@ -36,7 +36,6 @@
                           <span class="absolute inset-0 z-10" aria-hidden="true" />
                           {{ item.name }}
                         </a>
-                        <p aria-hidden="true" class="mt-1">Shop now</p>
                       </div>
                     </div>
                     <div v-for="section in category.sections" :key="section.name">
