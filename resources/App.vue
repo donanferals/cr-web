@@ -75,16 +75,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { carrinhoStore } from '/resources/js/stores/carrinho'
-import Menu from '/resources/js/components/Menu.vue'
+  import { carrinhoStore } from '/resources/js/stores/carrinho'
+  import Menu from '/resources/js/components/Menu.vue'
 
-const abrirCarrinho = ref(false)
-const carrinho = carrinhoStore()
-
-const apresentarCarrinho = () => {
-  abrirCarrinho.value = !abrirCarrinho.value;
-}
+  const carrinho = carrinhoStore()
 
 </script>
     
